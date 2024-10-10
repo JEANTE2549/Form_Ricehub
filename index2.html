@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Leaflet Map with Form Submission</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/1.0.4/leaflet.draw.css" />
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Search and Location Box -->
+  <div id="searchBox">
+    <input type="text" id="locationInput" placeholder="Search for a location" oninput="fetchSuggestions()">
+    <button onclick="geocode()">Search</button>
+    <button id="findMeButton" onclick="findMyLocation()">Find My Location</button>
+    <div id="suggestions"></div>
+    <div id="addressBox">Address will appear here</div>
+  </div>
+
+  <!-- Form Section -->
+  <div id="formContainer">
+    <h2>Submit Your Information</h2>
+    <form id="locationForm">
+      <label for="name">Name:</label>
+      <input type="text" id="name" name="name" required>
+
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email" required>
+
+      <label for="address">Address:</label>
+      <input type="text" id="address" name="address" readonly>
+
+      <label for="lat">Latitude:</label>
+      <input type="text" id="lat" name="lat" readonly>
+
+      <label for="lon">Longitude:</label>
+      <input type="text" id="lon" name="lon" readonly>
+
+      <button type="submit">Submit</button>
+    </form>
+  </div>
+
+  <!-- Map Section -->
+  <div id="map"></div>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/1.0.4/leaflet.draw.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
