@@ -1,12 +1,4 @@
-window.onload = function() {
-  // Initialize LIFF
-  liff.init({
-      liffId: "2005012452-z1yPYplN"
-  }).then(() => {
-      console.log("LIFF initialized successfully");
-  }).catch((err) => {
-      console.error("LIFF initialization failed:", err);
-  });
+
 
   // Function to submit form data
   document.getElementById('submitData').addEventListener('click', function() {
@@ -34,4 +26,3 @@ window.onload = function() {
   document.getElementById('mapPage').addEventListener('click', function() {
       window.location.href = "https://jeante2549.github.io/Form_Ricehub2/";  // Replace with the URL of your map page
   });
-};
