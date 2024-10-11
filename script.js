@@ -32,6 +32,6 @@ window.onload = function() {
 
   // Redirect to the external map page
   document.getElementById('mapPage').addEventListener('click', function() {
-      window.location.href = "YOUR_MAP_PAGE_URL";  // Replace with the URL of your map page
+      window.location.href = "https://jeante2549.github.io/Form_Ricehub2/";  // Replace with the URL of your map page
   });
 };
