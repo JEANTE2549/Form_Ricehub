@@ -25,7 +25,7 @@ window.onload = function() {
       const riceType = document.getElementById('riceType').value;
       const cultivar = document.getElementById('cultivar').value;
 
-      if (province && riceType && cultivar && farmlandCoordinates.lat && farmlandCoordinates.lon) {
+      if (province && riceType && cultivar) {
           const userProfile = await liff.getProfile();
           const userId = userProfile.userId;
 
@@ -34,11 +34,10 @@ window.onload = function() {
               riceType: riceType,
               cultivar: cultivar,
               userId: userId,
-              farmlandCoordinates: farmlandCoordinates
           };
 
           // Submit data to server
-          fetch('https://your-server-url.com/api/saveRiceData', {
+          fetch('https://65f3-2403-6200-8813-2e9f-857-8147-a298-65e8.ngrok-free.app/api/saveRiceData', {
               method: 'POST',
               headers: {
                   'Content-Type': 'application/json'
