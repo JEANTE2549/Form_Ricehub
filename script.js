@@ -11,7 +11,7 @@ window.onload = function() {
 
   // Redirect to external map page
   document.getElementById('mapPage').addEventListener('click', function() {
-      const mapPageUrl = "https://jeante2549.github.io/Form_Ricehub2/map.html";  // Replace with your actual map page URL
+      const mapPageUrl = "https://jeante2549.github.io/Form_Ricehub2/";  // Replace with your actual map page URL
 
       liff.openWindow({
           url: mapPageUrl,
