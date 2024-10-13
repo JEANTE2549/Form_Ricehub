@@ -50,7 +50,7 @@ function submitForm() {
     chemicalType: document.getElementById('chemicalType').value
   };
 
-  fetchfetch('https://6add-2403-6200-8813-2e9f-f108-ca62-8066-55ed.ngrok-free.app/submit-form', {
+  fetch('https://6add-2403-6200-8813-2e9f-f108-ca62-8066-55ed.ngrok-free.app/submit-form', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
