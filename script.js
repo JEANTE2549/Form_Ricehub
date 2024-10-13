@@ -1,10 +1,15 @@
 window.onload = function() {
   liff.init({ liffId: '2005012452-z1yPYplN' })
     .then(() => {
+      if (!liff.isInClient()) {
+        alert('Please open this page from the LINE app.');
+        return;
+      }
       if (liff.isLoggedIn()) {
         return liff.getProfile();
+      } else {
+        liff.login();
       }
-      liff.login();
     })
     .then(profile => {
       const userId = profile.userId;
@@ -33,11 +38,6 @@ function nextPage(current, next) {
   }
 }
 
-function showChemicalInput(show) {
-  const chemicalInputContainer = document.getElementById('chemicalInputContainer');
-  chemicalInputContainer.style.display = show ? 'block' : 'none';
-}
-
 function submitForm() {
   const formData = {
     userId: document.getElementById('userId').value,
@@ -50,23 +50,20 @@ function submitForm() {
     chemicalType: document.getElementById('chemicalType').value
   };
 
-  // Use your current ngrok URL, replace it with Heroku URL when you switch
-  fetch('https://<your-ngrok-url>/submit-form', {
+  fetch('/submit-form', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
     },
     body: JSON.stringify(formData)
-  })
-    .then(response => response.json())
+  }).then(response => response.json())
     .then(data => {
       if (data.success) {
         alert('Form submitted successfully!');
       } else {
         alert('Form submission failed.');
       }
-    })
-    .catch(error => {
+    }).catch(error => {
       console.error('Error submitting form:', error);
     });
 }
