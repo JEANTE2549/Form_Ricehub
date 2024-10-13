@@ -1,65 +1,81 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rice Farming Data Collection</title>
-    <script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            padding: 20px;
-        }
-
-        .form-container {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-        }
-
-        input, select, button {
-            padding: 10px;
-            font-size: 16px;
-            border-radius: 5px;
-            border: 1px solid #ccc;
-        }
-
-        button {
-            background-color: #28a745;
-            color: white;
-            cursor: pointer;
-        }
-
-        button:hover {
-            background-color: #218838;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rice Farming Survey</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <h1>Rice Farming Information</h1>
-    <div class="form-container">
-        <label for="province">Province:</label>
-        <select id="province">
-            <option value="">Select Province</option>
-            <option value="Bangkok">Bangkok</option>
-            <option value="Chiang Mai">Chiang Mai</option>
-            <option value="Ayutthaya">Ayutthaya</option>
-        </select>
-
-        <label for="riceType">Sown or Planted Rice:</label>
-        <select id="riceType">
-            <option value="">Select</option>
-            <option value="Sown">Sown Rice</option>
-            <option value="Planted">Planted Rice</option>
-        </select>
-
-        <label for="cultivar">Rice Cultivar:</label>
-        <input type="text" id="cultivar" placeholder="Enter rice cultivar">
-
-        <button id="submitData">Submit Data</button>
-        <button id="mapPage">Go to Map</button>
+  <input type="hidden" id="userId" name="userId">
+  
+  <div class="container" id="question1">
+    <h2>1. พันธุ์ข้าวที่ใช้</h2>
+    <div class="choice-box">
+      <label><input type="radio" name="riceType" value="type1"> Type 1</label>
+      <label><input type="radio" name="riceType" value="type2"> Type 2</label>
     </div>
+    <button onclick="nextPage('question1', 'question2')">Next</button>
+  </div>
 
-    <script src="./script.js"></script>
+  <div class="container" id="question2" style="display: none;">
+    <h2>2. ข้าวนาหว่านหรือนาปัก</h2>
+    <div class="choice-box">
+      <label><input type="radio" name="plantingMethod" value="nawa"> หว่าน</label>
+      <label><input type="radio" name="plantingMethod" value="napak"> ปัก</label>
+    </div>
+    <button onclick="nextPage('question2', 'question3')">Next</button>
+  </div>
+
+  <div class="container" id="question3" style="display: none;">
+    <h2>3. ปลูกข้าวแปลงนี้มากี่วันแล้ว</h2>
+    <div class="choice-box">
+      <label><input type="radio" name="daysPlanted" value="lessThanWeek"> Less than a week</label>
+      <label><input type="radio" name="daysPlanted" value="oneToTwoWeeks"> 1-2 weeks</label>
+      <label><input type="radio" name="daysPlanted" value="moreThanTwoWeeks"> More than 2 weeks</label>
+    </div>
+    <button onclick="nextPage('question3', 'question4')">Next</button>
+  </div>
+
+  <div class="container" id="question4" style="display: none;">
+    <h2>4. ลักษณะดินที่ใช้ปลูก</h2>
+    <div class="choice-box">
+      <label><input type="radio" name="soilType" value="sandy"> Sandy</label>
+      <label><input type="radio" name="soilType" value="clay"> Clay</label>
+      <label><input type="radio" name="soilType" value="loamy"> Loamy</label>
+    </div>
+    <button onclick="nextPage('question4', 'question5')">Next</button>
+  </div>
+
+  <div class="container" id="question5" style="display: none;">
+    <h2>5. ระดับน้ำ(ซม.จากดิน)</h2>
+    <div class="choice-box">
+      <label><input type="radio" name="waterLevel" value="low"> ต่ำกว่า 5 ซม.</label>
+      <label><input type="radio" name="waterLevel" value="medium"> 5-10 ซม.</label>
+      <label><input type="radio" name="waterLevel" value="high"> มากกว่า 10 ซม.</label>
+    </div>
+    <button onclick="nextPage('question5', 'question6')">Next</button>
+  </div>
+
+  <div class="container" id="question6" style="display: none;">
+    <h2>6. เคยใช้สารเคมีชนิดใดในแปลงหรือไม่</h2>
+    <div class="choice-box">
+      <label>
+        <input type="radio" name="chemicalUsed" value="yes" onclick="showChemicalInput(true)"> ใช้
+      </label>
+      <label>
+        <input type="radio" name="chemicalUsed" value="no" onclick="showChemicalInput(false)"> ไม่ใช้
+      </label>
+    </div>
+    
+    <div id="chemicalInputContainer" style="display: none;">
+      <label for="chemicalType">กรุณากรอกสารเคมีที่เคยใช้:</label>
+      <input type="text" id="chemicalType" name="chemicalType" placeholder="พิมพ์ชื่อสารเคมีที่ใช้">
+    </div>
+    
+    <button onclick="submitForm()">Submit</button>
+  </div>
+
+  <script src="script.js"></script>
 </body>
 </html>
